@@ -1,0 +1,31 @@
+Given an array A of n positive numbers. The task is to find the first equilibrium point in an array. Equilibrium point in an array is an index (or position) such that the sum of all elements before that index is same as sum of elements after it.
+
+Note: Return equilibrium point in 1-based indexing. Return -1 if no such point exists. 
+
+def equilibriumPoint(arr):
+    n = len(arr)
+    
+    # Calculate the total sum of the array.
+    total_sum = sum(arr)
+    
+    # Initialize left_sum to 0.
+    left_sum = 0
+    
+    for i in range(n):
+        # Calculate the right_sum as the total sum minus the left_sum and the current element.
+        right_sum = total_sum - left_sum - arr[i]
+        
+        # If the left_sum and right_sum are equal, return the equilibrium point (1-based index).
+        if left_sum == right_sum:
+            return i + 1
+        
+        # Increment left_sum for the next iteration.
+        left_sum += arr[i]
+    
+    # If no equilibrium point is found, return -1.
+    return -1
+
+# Example usage:
+arr = [1, 3, 5, 2, 2]
+result = equilibriumPoint(arr)
+print(result)  # Output: 3
